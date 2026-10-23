@@ -95,3 +95,11 @@ if (!is.null(muestra_conv) && !is.null(muestra_aas) && !is.null(muestra_est)) {
 } else {
   cat("Completa los TODO 1 a 4 para ver la tabla comparativa.\n")
 }
+
+for (semilla in 1:5) {
+  set.seed(semilla)
+  muestra <- poblacion[sample(nrow(poblacion), 20), ]
+  media <- mean(muestra$ingresos_mensuales)
+
+  cat(sprintf("Semilla %d: %.2f USD\n", semilla, media))
+}

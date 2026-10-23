@@ -98,5 +98,7 @@ Utilizaría el muestreo por conveniencia cuando necesitara realizar una prueba r
 •	La clasificación de las variables permitió identificar correctamente los datos de los 12 clientes y sus ocho columnas. Comprobé que la satisfacción es una variable categórica ordinal, aunque se almacene como número, y que el nivel educativo debe conservar un orden específico.
 •	El estudio de muestreo permitió reconocer que una población de 400 clientes no necesariamente genera un resultado representativo de todos los registros. En particular, seleccionar únicamente los primeros 20 clientes excluye a Guayaquil y Cuenca, lo que muestra un problema de representación que no se resuelve aumentando el tamaño de la muestra.
 
+•	El estudio de muestreo permitió reconocer que una población de 400 clientes no necesariamente genera un resultado representativo de todos los registros. En particular, seleccionar únicamente los primeros 20 clientes excluye a Guayaquil y Cuenca, lo que muestra un problema de representación que no se resuelve aumentando el tamaño de la muestra.
+
 •	Para RetailAndina S.A., recomendaría utilizar métodos probabilísticos cuando se necesiten resultados que representen a toda la población. El muestreo estratificado resulta especialmente útil cuando interesa asegurar la participación de las tres ciudades. En conclusión, las estimaciones deben estar precedidas por la buena elección de un método y un tamaño de muestra que permita obtener resultados representativos, no necesariamente aumentarlo. 
 

@@ -10,18 +10,23 @@
 #
 # Uso (desde la raíz del repositorio):  Rscript scripts/clasificacion_variables.R
 
+
 clientes <- read.csv("data/clientes.csv", stringsAsFactors = FALSE)
 
 # ---------------------------------------------------------------------------
 # 1. Estructura del archivo
 # ---------------------------------------------------------------------------
-cat(sprintf("Dimensiones: %d filas × %d columnas\n", nrow(clientes), ncol(clientes)))
+cat(sprintf("Dimensiones: %d filas × %d columnas", nrow(clientes), ncol(clientes)))
+cat("\n")
 print(clientes)
 
 # ---------------------------------------------------------------------------
 # 2. Tipos inferidos (str) — la pista que da el lenguaje
 # ---------------------------------------------------------------------------
+cat("Tipos inferidos en R:")
+cat("\n")
 str(clientes)
+
 # TODO 1: ¿qué columnas llegan como número (int) y cuáles como texto
 #         (character)? Anótalo para el informe. Ojo con satisfaccion: llega
 #         como número y es ordinal ("4 no es el doble de 2") — la justificación
@@ -33,9 +38,19 @@ str(clientes)
 # TODO 2: completa el bucle para imprimir, por columna, cuántos valores únicos
 #         hay y cuáles son. Pista: for (columna in names(clientes)) { ... } con
 #         unique() y length(). ¿Cuántas categorías tiene genero?
-# for (columna in names(clientes)) {
-#   ...
-# }
+
+cat("Valores únicos por columna:")
+cat("\n")
+
+for (columna in names(clientes)) {
+  valores <- unique(clientes[[columna]])
+
+  cat(columna, ": ", length(valores), " valores únicos", sep = "")
+  cat("\n")
+
+  cat("Valores: ")
+  print(valores)
+}
 
 # ---------------------------------------------------------------------------
 # 4. Declarar el orden de las variables ordinales
@@ -51,22 +66,80 @@ str(clientes)
 #         nivel_educacion? Cuenta los faltantes con sum(is.na(...)) — la trampa
 #         del typo es silenciosa.
 
+# TODO 3
+
+orden_educacion <- c(
+  "Primaria",
+  "Secundaria",
+  "Universidad",
+  "Posgrado"
+)
+
+clientes$nivel_educacion <- factor(
+  clientes$nivel_educacion,
+  levels = orden_educacion,
+  ordered = TRUE
+)
+
+cat("Nivel mínimo de educación:")
+cat("\n")
+print(min(clientes$nivel_educacion))
+cat("\n")
+
+# TODO 4
+
+clientes$satisfaccion <- factor(
+  clientes$satisfaccion,
+  levels = c(1, 2, 3, 4, 5),
+  ordered = TRUE
+)
+
+cat("Satisfacción mínima:")
+cat("\n")
+print(min(clientes$satisfaccion))
+cat("\n")
+
+# Prueba extra
+
+orden_incorrecto <- c(
+  "Primaria",
+  "Secundaria",
+  "Universidad",
+  "Postgrado"
+)
+
+educacion_error <- factor(
+  as.character(clientes$nivel_educacion),
+  levels = orden_incorrecto,
+  ordered = TRUE
+)
+
+cat("Valores faltantes por error de escritura:")
+cat("\n")
+print(sum(is.na(educacion_error)))
+cat("\n")
+
 # ---------------------------------------------------------------------------
 # 5. Resumen de la clasificación (para el informe)
 # ---------------------------------------------------------------------------
 # TODO 5: completa el resumen con el tipo de cada variable (el criterio que
 #         justifica cada clasificación va en el informe).
+
 clasificacion <- c(
-  cliente_id         = "…",
-  edad               = "…",
-  numero_hijos       = "…",
-  genero             = "…",
-  nivel_educacion    = "…",
-  ciudad             = "…",
-  ingresos_mensuales = "…",
-  satisfaccion       = "…"
+  cliente_id         = "Categórica nominal (identificador)",
+  edad               = "Numérica discreta",
+  numero_hijos       = "Numérica discreta",
+  genero             = "Categórica nominal",
+  nivel_educacion    = "Categórica ordinal",
+  ciudad             = "Categórica nominal",
+  ingresos_mensuales = "Numérica continua",
+  satisfaccion       = "Categórica ordinal"
 )
-cat("\nResumen de la clasificación (para el informe):\n")
+
+cat("\nResumen de la clasificación (para el informe):")
+cat("\n")
+
 for (variable in names(clasificacion)) {
-  cat(sprintf("  %-18s %s\n", variable, clasificacion[[variable]]))
+  cat(sprintf("  %-18s %s", variable, clasificacion[[variable]]))
+  cat("\n")
 }

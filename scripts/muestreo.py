@@ -102,3 +102,11 @@ if muestra_conv is not None and muestra_aas is not None and muestra_est is not N
     print("  P5: ¿cuándo usarías cada diseño? (piloto · subgrupos · conclusión)")
 else:
     print("Completa los TODO 1 a 4 para ver la tabla comparativa.")
+
+
+print("\nMedias con semillas del 1 al 5:")
+
+for semilla in range(1, 6):
+    muestra = poblacion.sample(n=20, random_state=semilla)
+    media = muestra["ingresos_mensuales"].mean()
+    print(f"Semilla {semilla}: {media:.2f} USD")

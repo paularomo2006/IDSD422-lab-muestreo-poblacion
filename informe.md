@@ -78,12 +78,25 @@ Porque no siempre se podrá calcular el parámetro de toda la población, entonc
 
 **P2.** ¿Cuánto vale el parámetro poblacional y cuánto estimó cada diseño? ¿Cuál quedó más cerca y por qué eso **no** alcanza para declarar un ganador?
 
+El parámetro es de 1330.72 y los tres diseños estimaron valores similares, igualmente dependiendo de cada lenguaje (Python y R). En ambos lenguajes el diseño que más se acercó fue el Aleatorio simple. Sin embargo, obtener un resultado aproximado al parámetro real en una sola ejecución no garantiza que ese método sea el más confiable, porque la proximidad puede estar relacionada con el azar. Para evaluar correctamente a un diseño se debe considerar el cómo se selecciona los registros.
+
+
 **P3.** La muestra por conveniencia también tiene 20 filas. ¿Qué defecto tiene y cómo lo delatas en la composición por ciudad? ¿Se corrige tomando más filas?
+
+El defecto que tiene el muestreo por conveniencia, a pesar de tener el mismo número de registros, es que la selección de los registros no es equitativa. Los clientes fueron seleccionados únicamente de la ciudad de Quito, por lo que las otras ciudades quedan excluidas. Aumentar la cantidad de registros no soluciona necesariamente el problema, porque si la selección continúa siguiendo el orden del archivo, el sesgo puede mantenerse.
 
 **P4.** El sorteo aleatorio dio un número distinto en cada semilla. ¿Qué implica esa variabilidad para una empresa que va a decidir con un solo estudio?
 
+Que siempre es necesario realizar varios estudios para poder verificar que el método sea más certero. Las estimaciones pueden variar dependiendo de los clientes que se seleccionan, incluso si se uso el mismo método y tamaño de muestra. 
+
 **P5.** ¿Cuándo usarías cada diseño en la práctica? Relaciona cada uno con un uso real (piloto, subgrupos que deben aparecer, conclusión sobre toda la población).
+
+Utilizaría el muestreo por conveniencia cuando necesitara realizar una prueba rápida o verificar que un procedimiento funciona, pero no para sacar conclusiones sobre todos los clientes. Aplicaría el muestreo aleatorio simple cuando quisiera obtener una muestra seleccionada al azar de toda la población. Finalmente, elegiría el muestreo estratificado cuando necesitara garantizar la participación de clientes de diferentes ciudades, especialmente si sus características pudieran variar entre ellas.
 
 ## Conclusiones
 
-*Escribe 2–3 conclusiones con tus palabras: qué aprendiste sobre el diseño del muestreo y qué le recomendarías a la gerencia antes de aceptar (o pedir) un análisis basado en muestras.*
+•	La clasificación de las variables permitió identificar correctamente los datos de los 12 clientes y sus ocho columnas. Comprobé que la satisfacción es una variable categórica ordinal, aunque se almacene como número, y que el nivel educativo debe conservar un orden específico.
+•	El estudio de muestreo permitió reconocer que una población de 400 clientes no necesariamente genera un resultado representativo de todos los registros. En particular, seleccionar únicamente los primeros 20 clientes excluye a Guayaquil y Cuenca, lo que muestra un problema de representación que no se resuelve aumentando el tamaño de la muestra.
+
+•	Para RetailAndina S.A., recomendaría utilizar métodos probabilísticos cuando se necesiten resultados que representen a toda la población. El muestreo estratificado resulta especialmente útil cuando interesa asegurar la participación de las tres ciudades. En conclusión, las estimaciones deben estar precedidas por la buena elección de un método y un tamaño de muestra que permita obtener resultados representativos, no necesariamente aumentarlo. 
+

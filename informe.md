@@ -7,7 +7,7 @@
 
 ## Resumen ejecutivo
 
-*Escribe 3–4 líneas para gerencia: qué se clasificó, qué se quiso estimar, con qué diseños de muestreo se hizo y qué debe saber la gerencia antes de decidir con una muestra.*
+En esta práctica analicé la base de fidelización de RetailAndina S.A. para identificar y clasificar correctamente las variables de sus clientes. Utilicé Python y R para verificar los tipos de datos, reconocer las variables ordinales y comprobar su orden. Además, el laboratorio permitió estudiar la estimación del ingreso mensual promedio mediante tres métodos de muestreo: por conveniencia, aleatorio simple y estratificado. El objetivo fue comprender cómo la selección de una muestra puede afectar la confiabilidad de los resultados y las decisiones de la empresa.
 
 ## Parte A — Clasificación de las variables
 
@@ -15,14 +15,14 @@
 
 | Variable | Tipo | Justificación (criterio) | Verificación en código |
 |---|---|---|---|
-| `cliente_id` | | | |
-| `edad` | | | |
-| `numero_hijos` | | | |
-| `genero` | | | |
-| `nivel_educacion` | | | |
-| `ciudad` | | | |
-| `ingresos_mensuales` | | | |
-| `satisfaccion` | | | |
+| `cliente_id` |Categórica nominal |Identifica al cliente, contiene números y letras. |str/chr |
+| `edad` |Numérica discreta |Se registró como años enteros, no con meses ni días. |int64/int |
+| `numero_hijos` |Numérica discreta |Se registró como años enteros, no con meses ni días. |int64/int |
+| `genero` |Categórica nominal |Las categorías no tienen orden que sea indispensable. No es binomial porque existe la opción Otro. |str/chr |
+| `nivel_educacion` |Categórica ordinal |Los niveles de educación tienen un orden. |str/chr |
+| `ciudad` |Categórica ordinal |Puede haber varios registros de distintas ciudades. |str/chr |
+| `ingresos_mensuales` |Numérica continua |Una cantidad de dinero puede tener valores decimales y/o enteros. |int64/int |
+| `satisfaccion` |Categórica ordinal |Es una escala de 1-5, tiene un orden específico. |int64/int |
 
 **P1.** ¿Qué te dijo el dtype de `satisfaccion` y por qué no basta para clasificarla? ¿Qué pasa si una ordinal queda como texto sin declarar el orden?
 

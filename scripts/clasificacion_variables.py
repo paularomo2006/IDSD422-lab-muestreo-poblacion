@@ -40,8 +40,13 @@ print()
 #         clientes[columna].unique() y len(). ¿Cuántas categorías tiene genero?
 # for columna in clientes.columns:
 #     ...
-print()
+print("Valores únicos por columna:")
 
+for columna in clientes.columns:
+    valores = clientes[columna].unique()
+    print(f"{columna}: {len(valores)} valores únicos")
+    print(f"Valores: {valores}")
+    print()
 # ---------------------------------------------------------------------------
 # 4. Declarar el orden de las variables ordinales
 # ---------------------------------------------------------------------------
@@ -51,11 +56,52 @@ print()
 # TODO 3: convierte nivel_educacion a categoría ordenada.
 #         Pista: astype(pd.CategoricalDtype(categories=[...], ordered=True)).
 #         Comprueba con .min(): debe devolver "Primaria".
+
+orden_educacion = [
+    "Primaria",
+    "Secundaria",
+    "Universidad",
+    "Posgrado"
+]
+
+tipo_educacion = pd.CategoricalDtype(categories=orden_educacion, ordered=True)
+
+clientes["nivel_educacion"] = clientes["nivel_educacion"].astype(tipo_educacion)
+
+print("Nivel mínimo de educación:")
+print(clientes["nivel_educacion"].min())
+print()
+
 # TODO 4: haz lo mismo con satisfaccion (escala 1–5 como etiquetas ordenadas).
 #         Prueba extra: ¿qué pasa si en la lista de categorías escribes
 #         "Postgrado" (con t) para nivel_educacion? Cuenta los faltantes con
 #         .isna().sum() — la trampa del typo es silenciosa.
+tipo_satisfaccion = pd.CategoricalDtype(categories=[1, 2, 3, 4, 5],ordered=True)
+
+clientes["satisfaccion"] = clientes["satisfaccion"].astype(tipo_satisfaccion)
+
+print("Satisfacción mínima:")
+print(clientes["satisfaccion"].min())
 print()
+
+# Prueba extra
+orden_incorrecto = [
+    "Primaria",
+    "Secundaria",
+    "Universidad",
+    "Postgrado"
+]
+
+tipo_incorrecto = pd.CategoricalDtype(categories=orden_incorrecto,ordered=True)
+
+valores_invalidos = ~clientes["nivel_educacion"].isin(
+    orden_incorrecto
+)
+
+print("Valores faltantes por error de escritura:")
+print(valores_invalidos.sum())
+print()
+
 
 # ---------------------------------------------------------------------------
 # 5. Resumen de la clasificación (para el informe)
@@ -63,14 +109,14 @@ print()
 # TODO 5: completa el resumen con el tipo de cada variable (el criterio que
 #         justifica cada clasificación va en el informe).
 clasificacion = {
-    "cliente_id": "…",
-    "edad": "…",
-    "numero_hijos": "…",
-    "genero": "…",
-    "nivel_educacion": "…",
-    "ciudad": "…",
-    "ingresos_mensuales": "…",
-    "satisfaccion": "…",
+    "cliente_id": "Categórica nominal (identificador)",
+    "edad": "Numérica discreta",
+    "numero_hijos": "Numérica discreta",
+    "genero": "Categórica nominal",
+    "nivel_educacion": "Categórica ordinal",
+    "ciudad": "Categórica nominal",
+    "ingresos_mensuales": "Numérica continua",
+    "satisfaccion": "Categórica ordinal",
 }
 print("Resumen de la clasificación (para el informe):")
 for variable, tipo in clasificacion.items():

@@ -26,33 +26,55 @@ En esta práctica analicé la base de fidelización de RetailAndina S.A. para id
 
 **P1.** ¿Qué te dijo el dtype de `satisfaccion` y por qué no basta para clasificarla? ¿Qué pasa si una ordinal queda como texto sin declarar el orden?
 
+El tipo de dato indicó que la variable satisfaccion era numérica (int64/int), pero esto no significa que sea una variable cuantitativa. En realidad, es ordinal porque sus valores representan niveles de satisfacción o una escala, donde 4 no necesariamente significa el doble de satisfacción que 2, eso depende de cómo se definido cada nivel. Si una variable ordinal queda almacenada como texto sin declarar su orden, el programa puede organizar sus categorías alfabéticamente en lugar de seguir su jerarquía real. Por eso declaré el orden de sus categorías en Python y R.
+
 ## Parte B — Población vs. muestra
 
 ### La población y su parámetro
 
 | Concepto | Valor |
 |---|---|
-| Población (N) | |
-| Variable de interés | |
-| Parámetro poblacional (media) | |
+| Población (N) |400 clientes |
+| Variable de interés |ingresos_mensuales |
+| Parámetro poblacional (media) |1330.72 USD |
 
 *¿Por qué se muestrea si aquí el parámetro existe y se calculó?*
+
+Porque no siempre se podrá calcular el parámetro de toda la población, entonces en la mayoría de los casos es necesario tomar una muestra para poder calcularlo. Para lo que se debe aplicar el método de muestreo que más se adecúe a la situación. En este caso se conoce toda la población y se puede obtener la media, que sirve como un valor de referencia.
 
 ### Los tres diseños
 
 *Corre tu script y registra las salidas. La composición por ciudad es la que delata el sesgo: anótala tal como salió.*
 
+*Python*
+
 | Diseño | n | Media estimada | Composición por ciudad | Diferencia vs. parámetro |
 |---|---|---|---|---|
-| Conveniencia (`head`) | | | | |
-| Aleatorio simple (`sample`) | | | | |
-| Estratificado (`groupby` + 5 %) | | | | |
+| Conveniencia (`head`) |20 |1348.50 |UIO=20 |+17.78 |
+| Aleatorio simple (`sample`) |20 |1336.00 |Cuenca = 8, UIO = 8, GYQ = 4 |+5.28 |
+| Estratificado (`groupby` + 5 %) |20 |1287.50 |Cuenca = 4, UIO = 10, GYQ = 6 |-43.22 |
+
+*R*
+| Diseño | n | Media estimada | Composición por ciudad | Diferencia vs. parámetro |
+|---|---|---|---|---|
+| Conveniencia (`head`) |20 |1348.50 |UIO=20 |+17.78 |
+| Aleatorio simple (`sample`) |20 |1318.00 |Cuenca = 5, UIO = 8, GYQ = 7 |-12.72 |
+| Estratificado (`groupby` + 5 %) |20 |1226.00 |Cuenca = 4, UIO = 10, GYQ = 6 |-104.72 |
+
+
 
 *Anota también las medias de 5 sorteos distintos del aleatorio simple (semillas 1 a 5):*
 
+*Python*
+
 | Semilla | 1 | 2 | 3 | 4 | 5 |
 |---|---|---|---|---|---|
-| Media | | | | | |
+| Media |1336.00 |1405.00 |1235.00 |1491.50 |1288.00 |
+
+*R*
+| Semilla | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|
+| Media |1318.00 |1287.00 |1233.00 |1385.50 |1283.00 |
 
 **P2.** ¿Cuánto vale el parámetro poblacional y cuánto estimó cada diseño? ¿Cuál quedó más cerca y por qué eso **no** alcanza para declarar un ganador?
 
